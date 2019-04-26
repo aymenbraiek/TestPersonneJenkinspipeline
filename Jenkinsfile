@@ -13,9 +13,8 @@ pipeline {
             post{
                 success{
                     echo 'Now Archiving ....'
-                def pom = readMavenPom file: 'pom.xml'
-                    print pom.version
-                    archiveArtifacts artifacts :'target*//*.jar'
+
+            archiveArtifacts artifacts :'**/.war'
                 }
             }
         }
