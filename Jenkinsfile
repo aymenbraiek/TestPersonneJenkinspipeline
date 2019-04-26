@@ -14,7 +14,7 @@ pipeline {
                 success{
                     echo 'Now Archiving ....'
 
-            archiveArtifacts artifacts :'target/*.war'
+                  archiveArtifacts artifacts :'target/*.war'
                 }
             }
         }
@@ -22,7 +22,7 @@ pipeline {
         stage ('Deploy Build in Staging Area'){
             steps{
 
-                build job : 'DeployTestPersonne'
+                build job : 'DeployTestPersonne', parameters: [[$class: 'StringParameterValue', name: 'jarName', value: jarName], [$class: 'StringParameterValue', name: 'appVersion', value: releasedVersion]]
 
             }
         }
