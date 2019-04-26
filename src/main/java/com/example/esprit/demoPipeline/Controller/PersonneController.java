@@ -28,7 +28,7 @@ public class PersonneController  {
         return  personneRepository.save(personne);
     }
 
-    @RequestMapping("/create")
+    @RequestMapping("/listall")
     public List<Personne> FindAllPersonnes() {
 
         return  personneRepository.findAll();
