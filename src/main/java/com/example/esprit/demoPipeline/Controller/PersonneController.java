@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RestController
 @CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping("/biat")
@@ -24,5 +26,11 @@ public class PersonneController  {
         personne.setName("ehththrhr");
 
         return  personneRepository.save(personne);
+    }
+
+    @RequestMapping("/create")
+    public List<Personne> FindAllPersonnes() {
+
+        return  personneRepository.findAll();
     }
 }
