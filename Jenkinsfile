@@ -13,7 +13,8 @@ pipeline {
             post{
                 success{
                     echo 'Now Archiving ....'
-
+                def pom = readMavenPom file: 'pom.xml'
+                    print pom.version
                     archiveArtifacts artifacts :'target*//*.jar'
                 }
             }
@@ -27,24 +28,6 @@ pipeline {
             }
         }
 
-        stage ('Deploy to Production'){
-            steps{
-                timeout (time: 5, unit:'DAYS'){
-                    input message: 'Approve PRODUCTION Deployment?'
-                }
 
-                build job : 'DeployTestPersonne'
-            }
-
-            post{
-                success{
-                    echo 'Deployment on PRODUCTION is Successful'
-                }
-
-                failure{
-                    echo 'Deployement Failure on PRODUCTION'
-                }
-            }
-        }
     }
     }
