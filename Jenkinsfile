@@ -31,6 +31,17 @@ pipeline {
                 }
             }
         }
+        stage('SonarQube Analysis') {
+        def mvnHome =  tool name: 'localMaven', type: 'maven'
+        withSonarQubeEnv('sonar-6') { 
+          bat "${mvnHome}/bin/mvn sonar:sonar"
+        }
+    }
+     stage('Email Notification'){
+      mail bcc: '', body: '''Hi Welcome to jenkins email alerts
+      Thanks
+      Hari''', cc: '', from: '', replyTo: '', subject: 'Jenkins Job', to: 'aymen.braiek@biat.com.tn'
+   }
 
         stage ('Deploy Build in Staging Area'){
             steps{
