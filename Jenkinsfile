@@ -12,7 +12,8 @@ properties(
 )
 
 pipeline {
-    agent any
+
+  agent any
     stages {
         stage ('Build Servlet Project') {
             steps {
@@ -32,7 +33,7 @@ pipeline {
             }
         }
         stage('SonarQube Analysis') {
-        def mvnHome =  tool name: 'localMaven', type: 'maven'
+       
         withSonarQubeEnv('sonar-6') { 
           bat "${mvnHome}/bin/mvn sonar:sonar"
         }
