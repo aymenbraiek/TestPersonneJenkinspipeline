@@ -32,17 +32,21 @@ pipeline {
                 }
             }
         }
+        
         stage('SonarQube Analysis') {
+          steps{
        
         withSonarQubeEnv('sonar-6') { 
-          bat "${mvnHome}/bin/mvn sonar:sonar"
+          bat "mvn sonar:sonar"
         }
     }
+     }
      stage('Email Notification'){
+       steps{
       mail bcc: '', body: '''Hi Welcome to jenkins email alerts
       Thanks
       Hari''', cc: '', from: '', replyTo: '', subject: 'Jenkins Job', to: 'aymen.braiek@biat.com.tn'
-   }
+   }}
 
         stage ('Deploy Build in Staging Area'){
             steps{
