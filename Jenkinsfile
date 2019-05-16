@@ -21,14 +21,14 @@ pipeline {
                bat  'mvn clean package'
 
                 /*For Mac & Linux machine */
-               // sh  'mvn clean package'
+               // sh  'mvn  -B -DskipTests clean package'
             }
 
             post{
                 success{
                     echo 'Now Archiving ....'
 
-                  archiveArtifacts artifacts :'/target/*.jar'
+                  archiveArtifacts artifacts :'target/*.jar'
                 }
             }
         }
