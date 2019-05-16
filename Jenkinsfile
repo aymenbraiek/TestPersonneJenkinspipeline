@@ -28,7 +28,7 @@ pipeline {
                 success{
                     echo 'Now Archiving ....'
 
-                  archiveArtifacts artifacts :'target/*.jar'
+                  archiveArtifacts artifacts :'target/*.war'
                 }
             }
         }
