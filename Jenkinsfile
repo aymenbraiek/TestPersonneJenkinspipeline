@@ -41,14 +41,9 @@ pipeline {
         }
     }
      }
-     stage('Email Notification'){
-       steps{
-      mail bcc: '', body: '''Hi Welcome to jenkins email alerts
-      Thanks
-      Hari''', cc: '', from: '', replyTo: '', subject: 'Jenkins Job', to: 'aymen.braiek@biat.com.tn'
-   }}
+   
 
-        stage ('Deploy Build in Staging Area'){
+    stage ('Deploy Build in Staging Area'){
             steps{
 
                 build(job : 'DeployTestPersonne' ,propagate:  false)
