@@ -40,9 +40,9 @@ pipeline {
        
        withSonarQubeEnv('sonar-6') {
          // bat "mvn sonar:sonar"
-        bat "mvn sonar:sonar
-           -Dsonar.projectKey=jenkins-pipeline
-           -Dsonar.host.url=http://localhost:9000
+        bat "mvn sonar:sonar \
+           -Dsonar.projectKey=jenkins-pipeline \
+           -Dsonar.host.url=http://localhost:9000 \
            -Dsonar.login=e946cc99e7b940bb75c5ecbca4c1c9b43771a04b"
        }
     }
