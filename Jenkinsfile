@@ -33,14 +33,14 @@ pipeline {
             }
         }
         
-        stage('SonarQube Analysis') {
-          steps{
+     //   stage('SonarQube Analysis') {
+         // steps{
        
-        withSonarQubeEnv('sonar-6') { 
-          bat "mvn sonar:sonar"
-        }
-    }
-     }
+      //  withSonarQubeEnv('sonar-6') { 
+       //   bat "mvn sonar:sonar"
+       // }
+   // }
+    // }
 	
 
     stage ('Deploy Build in Staging Area'){
