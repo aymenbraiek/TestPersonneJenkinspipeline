@@ -29,24 +29,35 @@ pipeline {
                     echo 'Now Archiving ....'
 
                   archiveArtifacts artifacts :'target/*.war'
+                //notification succes
                 }
             }
+            //post failure notification ki
         }
         
-     //   stage('SonarQube Analysis') {
-         // steps{
+        stage('SonarQube Analysis') {
+         steps{
        
-      //  withSonarQubeEnv('sonar-6') { 
-       //   bat "mvn sonar:sonar"
-       // }
-   // }
-    // }
+       withSonarQubeEnv('sonar-6') {
+          bat "mvn sonar:sonar"
+       }
+    }
+       post{
+                    success{
+                        echo 'quality code verified'
+
+                      archiveArtifacts artifacts :'target/*.war'
+                    //notification succes
+                    }
+                }
+     }
 	
 
     stage ('Deploy Build in Staging Area'){
             steps{
 
-                build(job : 'DeployTestPersonne' ,propagate:  false)
+              //  build(job : 'DeployTestPersonne' ,propagate:  false)
+              echo 'you can deploy your artifact'
 
             }
         }
